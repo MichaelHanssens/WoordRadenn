@@ -35,7 +35,7 @@
         android:id="@+id/textView"
         android:layout_width="296dp"
         android:layout_height="360dp"
-        android:text='Klik op "Start" om een nieuw spel te starten. Er zal een woord zometeen door elkaar staan. De bedoeling is om de letters in de juiste volgorde te brengen om zo een woord te vinden. Van zodra je het woord hebt gevonden kan je het ingeven en kijken of het correct is.'
+        android:text='Klik op "Start" om een nieuw spel te starten. Er zal een woord door elkaar staan. De bedoeling is om de letters in de juiste volgorde te brengen om zo een woord te vinden. De letter die in hoofdletter staat is de beginletter van het woord. Van zodra je het woord hebt gevonden kan je het ingeven en kijken of het correct is.'
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textSize="18sp"

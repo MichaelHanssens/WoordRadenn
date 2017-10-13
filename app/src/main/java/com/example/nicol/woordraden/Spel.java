@@ -1,5 +1,6 @@
 package com.example.nicol.woordraden;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,10 +16,12 @@ import java.util.Random;
 public class Spel extends AppCompatActivity {
     String woorden[] = new String[]{"Aardappel", "Banaan", "Pannenkoek","Haardvuur","Schoolboeken","Computermuis","Pingpongtafel","Vaatwasser","Televisietoestel","Polshorloge"};
     String GekozenWoord = kiesWoord(woorden);
-    TextView Letterslabel;
+    TextView Oplossing;
     EditText Ingave;
     Button Raad;
     Button Volgende;
+    TextView Controle;
+    Button Opnieuw;
     private String kiesWoord(String woorden[]){
         Random rn = new Random();
         int RandomCijfer = rn.nextInt(woorden.length);
@@ -31,7 +34,7 @@ public class Spel extends AppCompatActivity {
         ArrayList GebruikteGetallen = new ArrayList();
         int AantalLetters = GekozenWoord.length();
         int teller=0;
-        while (teller < AantalLetters) {
+        for(int i= 0;i<= AantalLetters-1;i++) {
             int RandomCijfer;
             do {
                 RandomCijfer = rn.nextInt(AantalLetters);
@@ -49,33 +52,51 @@ public class Spel extends AppCompatActivity {
         setContentView(R.layout.activity_spel);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Letterslabel = (TextView) findViewById(R.id.LettersLabel);
+        Oplossing = (TextView) findViewById(R.id.LettersLabel);
         Ingave = (EditText) findViewById(R.id.IngaveTextbox);
         Raad = (Button) findViewById(R.id.RadenButton);
         Volgende = (Button) findViewById(R.id.volgendeButton);
-        Letterslabel.setText(setWoordDoorElkaar(woorden,GekozenWoord));
-        Raad.setOnClickListener(new View.OnClickListener(){
+        Controle = (TextView) findViewById(R.id.ControletextView);
+        Opnieuw = (Button) findViewById(R.id.OpnieuwButton) ;
+        Oplossing.setText(setWoordDoorElkaar(woorden, GekozenWoord));
+        Raad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Objects.equals(Ingave.getText().toString().toLowerCase(), GekozenWoord.toLowerCase())){
-                    Letterslabel.setText(GekozenWoord);
+                if (Objects.equals(Ingave.getText().toString().toLowerCase(), GekozenWoord.toLowerCase())) {
+                    Oplossing.setText(GekozenWoord);
                     Raad.setVisibility(View.INVISIBLE);
                     Volgende.setVisibility(View.VISIBLE);
+                    Controle.setText("Correct");
+                    Controle.setTextColor(Color.GREEN);
+                } else {
+                    Controle.setText("Niet Correct");
+                    Controle.setTextColor(Color.RED);
+                    Opnieuw.setVisibility(View.VISIBLE);
+                    Raad.setVisibility(View.INVISIBLE);
                 }
                 Ingave.setText("");
             }
         });
-        Volgende.setOnClickListener(new View.OnClickListener(){
+        Volgende.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 GekozenWoord = kiesWoord(woorden);
-                Letterslabel.setText(setWoordDoorElkaar(woorden,GekozenWoord));
+                Oplossing.setText(setWoordDoorElkaar(woorden, GekozenWoord));
                 Volgende.setVisibility(View.INVISIBLE);
                 Raad.setVisibility(View.VISIBLE);
                 Ingave.setText("");
+                Controle.setText("");
+            }
+        });
+        Opnieuw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Controle.setText("");
+                Opnieuw.setVisibility(View.INVISIBLE);
+               Controle.setText("");
+                Raad.setVisibility(View.VISIBLE);
             }
         });
     }
-    int jan = 6;
 
 }
