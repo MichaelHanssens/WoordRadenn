@@ -86,6 +86,6 @@ public class Spel extends AppCompatActivity {
             }
         });
     }
-    int jan = 3;
+    int jan = 5;
 
 }
