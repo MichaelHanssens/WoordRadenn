@@ -1,26 +1,16 @@
 package com.example.nicol.woordraden;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
-
-import javax.xml.transform.dom.DOMResult;
-
-import static com.example.nicol.woordraden.R.id.RadenButton;
 
 public class Spel extends AppCompatActivity {
     String woorden[] = new String[]{"Aardappel", "Banaan", "Pannenkoek","Haardvuur","Schoolboeken","Computermuis","Pingpongtafel","Vaatwasser","Televisietoestel","Polshorloge"};
@@ -86,6 +76,6 @@ public class Spel extends AppCompatActivity {
             }
         });
     }
-    int jan = 5;
+    int jan = 6;
 
 }
