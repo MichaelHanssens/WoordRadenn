@@ -33,13 +33,11 @@ public class Spel extends AppCompatActivity {
         String DoorElkaarWoord="";
         ArrayList GebruikteGetallen = new ArrayList();
         int AantalLetters = GekozenWoord.length();
-        int teller=0;
         for(int i= 0;i<= AantalLetters-1;i++) {
             int RandomCijfer;
             do {
                 RandomCijfer = rn.nextInt(AantalLetters);
             } while (GebruikteGetallen.contains(RandomCijfer));
-            teller+=1;
             GebruikteGetallen.add(RandomCijfer);
             String letter = GekozenWoord.substring(RandomCijfer, RandomCijfer+1);
             DoorElkaarWoord += letter;
