@@ -28,7 +28,7 @@ public class Spel extends AppCompatActivity {
         String GekozenWoord = woorden[RandomCijfer];
         return  GekozenWoord;
     }
-    private String setWoordDoorElkaar(String woorden[],String GekozenWoord){
+    private String setWoordDoorElkaar(String GekozenWoord){
         Random rn = new Random();
         String DoorElkaarWoord="";
         ArrayList GebruikteGetallen = new ArrayList();
@@ -58,7 +58,7 @@ public class Spel extends AppCompatActivity {
         Volgende = (Button) findViewById(R.id.volgendeButton);
         Controle = (TextView) findViewById(R.id.ControletextView);
         Opnieuw = (Button) findViewById(R.id.OpnieuwButton) ;
-        Oplossing.setText(setWoordDoorElkaar(woorden, GekozenWoord));
+        Oplossing.setText(setWoordDoorElkaar(GekozenWoord));
         Raad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,7 +81,7 @@ public class Spel extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 GekozenWoord = kiesWoord(woorden);
-                Oplossing.setText(setWoordDoorElkaar(woorden, GekozenWoord));
+                Oplossing.setText(setWoordDoorElkaar(GekozenWoord));
                 Volgende.setVisibility(View.INVISIBLE);
                 Raad.setVisibility(View.VISIBLE);
                 Ingave.setText("");
