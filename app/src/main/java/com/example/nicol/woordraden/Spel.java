@@ -91,8 +91,8 @@ public class Spel extends AppCompatActivity {
             public void onClick(View view) {
                 Controle.setText("");
                 Opnieuw.setVisibility(View.INVISIBLE);
-               Controle.setText("");
                 Raad.setVisibility(View.VISIBLE);
+                Ingave.setText("");
             }
         });
     }
