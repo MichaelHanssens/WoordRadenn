@@ -76,7 +76,7 @@
         android:id="@+id/OpnieuwButton"
         android:layout_width="175dp"
         android:layout_height="49dp"
-        android:text="Opniew"
+        android:text="Opnieuw"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.054"
