@@ -28,19 +28,16 @@ public class Spel extends AppCompatActivity {
         String GekozenWoord = woorden[RandomCijfer];
         return  GekozenWoord;
     }
-    private String setWoordDoorElkaar(String GekozenWoord){
+    private String setLettersDoorElkaar(String GekozenWoord){
         Random rn = new Random();
         String DoorElkaarWoord="";
-        ArrayList GebruikteGetallen = new ArrayList();
         int AantalLetters = GekozenWoord.length();
+        int NogLettersOver = GekozenWoord.length();
         for(int i= 0;i<= AantalLetters-1;i++) {
-            int RandomCijfer;
-            do {
-                RandomCijfer = rn.nextInt(AantalLetters);
-            } while (GebruikteGetallen.contains(RandomCijfer));
-            GebruikteGetallen.add(RandomCijfer);
-            String letter = GekozenWoord.substring(RandomCijfer, RandomCijfer+1);
-            DoorElkaarWoord += letter;
+           int RandomCijfer= rn.nextInt(NogLettersOver);
+            DoorElkaarWoord += GekozenWoord.substring(RandomCijfer, RandomCijfer+1);
+            GekozenWoord = GekozenWoord.substring(0,RandomCijfer) + GekozenWoord.substring(RandomCijfer+1);
+            NogLettersOver -= 1;
         }
         return DoorElkaarWoord;
     }
@@ -56,7 +53,7 @@ public class Spel extends AppCompatActivity {
         Volgende = (Button) findViewById(R.id.volgendeButton);
         Controle = (TextView) findViewById(R.id.ControletextView);
         Opnieuw = (Button) findViewById(R.id.OpnieuwButton) ;
-        Oplossing.setText(setWoordDoorElkaar(GekozenWoord));
+        Oplossing.setText(setLettersDoorElkaar(GekozenWoord));
         Raad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,7 +76,7 @@ public class Spel extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 GekozenWoord = kiesWoord(woorden);
-                Oplossing.setText(setWoordDoorElkaar(GekozenWoord));
+                Oplossing.setText(setLettersDoorElkaar(GekozenWoord));
                 Volgende.setVisibility(View.INVISIBLE);
                 Raad.setVisibility(View.VISIBLE);
                 Ingave.setText("");
