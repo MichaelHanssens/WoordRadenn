@@ -8,26 +8,26 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 
 public class Spel extends AppCompatActivity {
     String woorden[] = new String[]{"Aardappel", "Banaan", "Pannenkoek","Haardvuur","Schoolboeken","Computermuis","Pingpongtafel","Vaatwasser","Televisietoestel","Polshorloge"};
     String GekozenWoord = kiesWoord(woorden);
-    TextView Oplossing;
-    EditText Ingave;
-    Button Raad;
-    Button Volgende;
-    TextView Controle;
-    Button Opnieuw;
+    TextView OplossingTextVieuw;
+    EditText IngaveEditText;
+    Button RaadButton;
+    Button VolgendeButton;
+    TextView ControleTextVieuw;
+    Button OpnieuwButton;
+
     private String kiesWoord(String woorden[]){
         Random rn = new Random();
         int RandomCijfer = rn.nextInt(woorden.length);
         String GekozenWoord = woorden[RandomCijfer];
         return  GekozenWoord;
     }
+
     private String setLettersDoorElkaar(String GekozenWoord){
         Random rn = new Random();
         String DoorElkaarWoord="";
@@ -41,57 +41,62 @@ public class Spel extends AppCompatActivity {
         }
         return DoorElkaarWoord;
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spel);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Oplossing = (TextView) findViewById(R.id.LettersLabel);
-        Ingave = (EditText) findViewById(R.id.IngaveTextbox);
-        Raad = (Button) findViewById(R.id.RadenButton);
-        Volgende = (Button) findViewById(R.id.volgendeButton);
-        Controle = (TextView) findViewById(R.id.ControletextView);
-        Opnieuw = (Button) findViewById(R.id.OpnieuwButton) ;
-        Oplossing.setText(setLettersDoorElkaar(GekozenWoord));
-        Raad.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (Objects.equals(Ingave.getText().toString().toLowerCase(), GekozenWoord.toLowerCase())) {
-                    Oplossing.setText(GekozenWoord);
-                    Raad.setVisibility(View.INVISIBLE);
-                    Volgende.setVisibility(View.VISIBLE);
-                    Controle.setText("Correct");
-                    Controle.setTextColor(Color.GREEN);
-                } else {
-                    Controle.setText("Niet Correct");
-                    Controle.setTextColor(Color.RED);
-                    Opnieuw.setVisibility(View.VISIBLE);
-                    Raad.setVisibility(View.INVISIBLE);
-                }
-                Ingave.setText("");
-            }
-        });
-        Volgende.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                GekozenWoord = kiesWoord(woorden);
-                Oplossing.setText(setLettersDoorElkaar(GekozenWoord));
-                Volgende.setVisibility(View.INVISIBLE);
-                Raad.setVisibility(View.VISIBLE);
-                Ingave.setText("");
-                Controle.setText("");
-            }
-        });
-        Opnieuw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Controle.setText("");
-                Opnieuw.setVisibility(View.INVISIBLE);
-                Raad.setVisibility(View.VISIBLE);
-                Ingave.setText("");
-            }
-        });
+        OplossingTextVieuw = (TextView) findViewById(R.id.LettersLabel);
+        IngaveEditText = (EditText) findViewById(R.id.IngaveTextbox);
+        RaadButton = (Button) findViewById(R.id.RadenButton);
+        RaadButton.setOnClickListener(new RaadButtonClick());
+        VolgendeButton = (Button) findViewById(R.id.volgendeButton);
+        VolgendeButton.setOnClickListener(new VolgendeButtonClick());
+        ControleTextVieuw = (TextView) findViewById(R.id.ControletextView);
+        OpnieuwButton = (Button) findViewById(R.id.OpnieuwButton) ;
+        OpnieuwButton.setOnClickListener(new OpnieuwButtonClick());
+        OplossingTextVieuw.setText(setLettersDoorElkaar(GekozenWoord));
     }
 
-}
+    class RaadButtonClick implements View.OnClickListener {
+        public void onClick(View view){
+            if (Objects.equals(IngaveEditText.getText().toString().toLowerCase(), GekozenWoord.toLowerCase())) {
+                OplossingTextVieuw.setText(GekozenWoord);
+                RaadButton.setVisibility(View.INVISIBLE);
+                VolgendeButton.setVisibility(View.VISIBLE);
+                ControleTextVieuw.setText("Correct");
+                ControleTextVieuw.setTextColor(Color.GREEN);
+            } else {
+                ControleTextVieuw.setText("Niet Correct");
+                ControleTextVieuw.setTextColor(Color.RED);
+                OpnieuwButton.setVisibility(View.VISIBLE);
+                RaadButton.setVisibility(View.INVISIBLE);
+            }
+            IngaveEditText.setText("");
+        }
+    }
+
+    class VolgendeButtonClick implements View.OnClickListener {
+        public void onClick(View view){
+            GekozenWoord = kiesWoord(woorden);
+            OplossingTextVieuw.setText(setLettersDoorElkaar(GekozenWoord));
+            VolgendeButton.setVisibility(View.INVISIBLE);
+            RaadButton.setVisibility(View.VISIBLE);
+            IngaveEditText.setText("");
+            ControleTextVieuw.setText("");
+        }
+    }
+
+    class OpnieuwButtonClick implements View.OnClickListener {
+        public void onClick(View view){
+            ControleTextVieuw.setText("");
+            OpnieuwButton.setVisibility(View.INVISIBLE);
+            RaadButton.setVisibility(View.VISIBLE);
+            IngaveEditText.setText("");
+        }
+
+    }
+    }
+
