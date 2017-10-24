@@ -22,3 +22,4 @@ public class Spel extends AppCompatActivity {
     }
 }
 
+
