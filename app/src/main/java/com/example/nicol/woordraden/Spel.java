@@ -11,16 +11,16 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Spel extends AppCompatActivity {
-    String woorden[] = new String[]{"Aardappel", "Banaan", "Pannenkoek","Haardvuur","Schoolboeken","Computermuis","Pingpongtafel","Vaatwasser","Televisietoestel","Polshorloge"};
-    String GekozenWoord = kiesWoord(woorden);
-    TextView OplossingTextVieuw;
+    String woorden[] = {"Aardappel", "Banaan", "Pannenkoek","Haardvuur","Schoolboeken","Computermuis","Pingpongtafel","Vaatwasser","Televisietoestel","Polshorloge"};
+    String GekozenWoord = kiesWoord();
+    TextView OplossingTextView;
     EditText IngaveEditText;
     Button RaadButton;
     Button VolgendeButton;
-    TextView ControleTextVieuw;
+    TextView ControleTextView;
     Button OpnieuwButton;
 
-    private String kiesWoord(String woorden[]){
+    private String kiesWoord(){
         Random rn = new Random();
         int RandomCijfer = rn.nextInt(woorden.length);
         String GekozenWoord = woorden[RandomCijfer];
@@ -47,29 +47,29 @@ public class Spel extends AppCompatActivity {
         setContentView(R.layout.activity_spel);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        OplossingTextVieuw = (TextView) findViewById(R.id.LettersLabel);
+        OplossingTextView = (TextView) findViewById(R.id.LettersLabel);
         IngaveEditText = (EditText) findViewById(R.id.IngaveTextbox);
         RaadButton = (Button) findViewById(R.id.RadenButton);
         RaadButton.setOnClickListener(new RaadButtonClick());
         VolgendeButton = (Button) findViewById(R.id.volgendeButton);
         VolgendeButton.setOnClickListener(new VolgendeButtonClick());
-        ControleTextVieuw = (TextView) findViewById(R.id.ControletextView);
+        ControleTextView = (TextView) findViewById(R.id.ControletextView);
         OpnieuwButton = (Button) findViewById(R.id.OpnieuwButton) ;
         OpnieuwButton.setOnClickListener(new OpnieuwButtonClick());
-        OplossingTextVieuw.setText(setLettersDoorElkaar(GekozenWoord));
+        OplossingTextView.setText(setLettersDoorElkaar(GekozenWoord));
     }
 
     class RaadButtonClick implements View.OnClickListener {
         public void onClick(View view){
             if (Objects.equals(IngaveEditText.getText().toString().toLowerCase(), GekozenWoord.toLowerCase())) {
-                OplossingTextVieuw.setText(GekozenWoord);
+                OplossingTextView.setText(GekozenWoord);
                 RaadButton.setVisibility(View.INVISIBLE);
                 VolgendeButton.setVisibility(View.VISIBLE);
-                ControleTextVieuw.setText("Correct");
-                ControleTextVieuw.setTextColor(Color.GREEN);
+                ControleTextView.setText("Correct");
+                ControleTextView.setTextColor(Color.GREEN);
             } else {
-                ControleTextVieuw.setText("Niet Correct");
-                ControleTextVieuw.setTextColor(Color.RED);
+                ControleTextView.setText("Niet Correct");
+                ControleTextView.setTextColor(Color.RED);
                 OpnieuwButton.setVisibility(View.VISIBLE);
                 RaadButton.setVisibility(View.INVISIBLE);
             }
@@ -79,18 +79,18 @@ public class Spel extends AppCompatActivity {
 
     class VolgendeButtonClick implements View.OnClickListener {
         public void onClick(View view){
-            GekozenWoord = kiesWoord(woorden);
-            OplossingTextVieuw.setText(setLettersDoorElkaar(GekozenWoord));
+            GekozenWoord = kiesWoord();
+            OplossingTextView.setText(setLettersDoorElkaar(GekozenWoord));
             VolgendeButton.setVisibility(View.INVISIBLE);
             RaadButton.setVisibility(View.VISIBLE);
             IngaveEditText.setText("");
-            ControleTextVieuw.setText("");
+            ControleTextView.setText("");
         }
     }
 
     class OpnieuwButtonClick implements View.OnClickListener {
         public void onClick(View view){
-            ControleTextVieuw.setText("");
+            ControleTextView.setText("");
             OpnieuwButton.setVisibility(View.INVISIBLE);
             RaadButton.setVisibility(View.VISIBLE);
             IngaveEditText.setText("");
