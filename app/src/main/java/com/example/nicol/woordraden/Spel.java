@@ -11,7 +11,7 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Spel extends AppCompatActivity {
-    String woorden[] = {"Aardappel", "Banaan", "Pannenkoek","Haardvuur","Schoolboeken","Computermuis","Pingpongtafel","Vaatwasser","Televisietoestel","Polshorloge", "Appelsien", "drinkfles", "papier", "kerstboom", "koffieaparaat", "Microgolfoven", "thuinhuis", "koekjes","fotokader", "schilderij"};
+    String woorden[] = {"Aardappel", "Banaan", "Pannenkoek","Haardvuur","Schoolboeken","Computermuis","Pingpongtafel","Vaatwasser","Televisietoestel","Polshorloge", "Appelsien", "Drinkfles", "Papier", "Kerstboom", "Koffieapparaat", "Microgolfoven", "Thuinhuis", "Koekjes","Fotokader", "Schilderij"};
     String GekozenWoord = kiesWoord();
     TextView OplossingTextView;
     EditText IngaveEditText;
